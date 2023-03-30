@@ -1,1 +1,1 @@
-# SampleContainer
+# django-on-docker
