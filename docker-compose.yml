@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: psql
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: python
+    command: python3 manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/code
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  
+volumes:
+  postgres_data:
